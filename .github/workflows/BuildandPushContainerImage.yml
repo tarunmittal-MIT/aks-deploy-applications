@@ -1,0 +1,51 @@
+name: Build and Push Container Image
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "AKSWebApp/**"
+permissions:
+  contents: write
+jobs:
+  ACRBuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: ACR build
+        id: acr
+        uses: azure/acr-build@v1
+        with:
+          service_principal: ${{ secrets.SERVICE_PRINCIPAL }}
+          service_principal_password: ${{ secrets.SERVICE_PRINCIPAL_PASSWORD }}
+          tenant: ${{ secrets.TENANT }}
+          registry: ${{ secrets.REGISTRY }}
+          repository: ${{ secrets.REPOSITORY }}
+          image: akswebapp
+          folder: AKSWebApp
+          branch: main
+  Update-Kubernetes-Manifest:
+    name: Update K8s Deployment Manifest
+    needs: ACRBuild
+    runs-on: ubuntu-latest
+    steps:
+    
+    - uses: actions/checkout@v2
+
+    - name: Update image name in manifest file
+      uses: azure/powershell@v1
+      with:
+        inlineScript: |
+          $WorkPath = $env:GITHUB_WORKSPACE
+          Get-ChildItem -Path $WorkPath
+          $DeploymentYAML = Join-Path -Path $WorkPath -ChildPath Manifests/deployment.yaml
+          $line = Get-Content -Path $DeploymentYAML | Select-String image: | Select-Object -ExpandProperty Line
+          $content = Get-Content $DeploymentYAML
+          $content | ForEach-Object {$_ -replace $line,"        image: ${{ secrets.REGISTRY }}.azurecr.io/${{ secrets.REPOSITORY }}:${{ github.run_number }}"} | Set-Content -Path $DeploymentYAML
+        azPSVersion: "latest"
+    
+    - name: Commit changes in manifest to repo
+      run: | 
+        git config user.name "GitHub Actions"
+        git config user.email ""
+        git add Manifests/deployment.yaml
+        git commit -m "Update image version in K8s Deployment manifests file"
+        git push origin

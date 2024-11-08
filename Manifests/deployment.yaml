@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: akswebapp
+  name: akswebapp
+  namespace: akswebapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: akswebapp
+  template:
+    metadata:
+      labels:
+        app: akswebapp
+    spec:
+      containers:
+        image: <CR NAME>.azurecr.io/akswebapp:v1 # Update this
+        name: akswebapp
+        envFrom:
+        - configMapRef:
+            name: env-config

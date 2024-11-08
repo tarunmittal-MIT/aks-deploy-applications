@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="../build/AKSWebApp.props" />
-</Project>

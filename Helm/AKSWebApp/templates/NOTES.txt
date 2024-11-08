@@ -1,0 +1,2 @@
+1. Get the application URL by running this command:
+kubectl get service --namespace {{ .Release.Namespace }}
