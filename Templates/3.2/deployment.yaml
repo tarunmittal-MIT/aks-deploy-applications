@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: pwsh-azurefiles
+  name: pwsh-azurefiles
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: pwsh-azurefiles
+  template:
+    metadata:
+      labels:
+        app: pwsh-azurefiles
+    spec:
+      containers:
+      - image: mcr.microsoft.com/powershell
+        name: pwsh-azurefiles
+        command:
+          - "pwsh"
+          - "-Command"
+          - "while ($true){ Write-Output \"$($env:HOSTNAME): $(Get-Date)\" | Out-File -FilePath 'mnt/azurefiles/date.txt' -Append; Start-Sleep -Seconds 60 }"
+        volumeMounts:
+          - name: persistent-storage
+            mountPath: "/mnt/azurefiles"
+            readOnly: false
+      volumes:
+        - name: persistent-storage
+          persistentVolumeClaim:
+            claimName: pvc-azurefiles

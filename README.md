@@ -5,7 +5,34 @@
 ```bash
 alias k=kubectl
 ```
+
 > **Note**: This samples provided in this repository need to be modified/updated to use your values.
+
+## Quick Links to Modules and Clips
+
+1. [Module 1: Preparing for Application Deployment](#module-1-preparing-for-application-deployment)
+
+    1. [Application Deployment Concepts](#application-deployment-concepts)
+    2. [Demo: Attach an Azure Container Registry](#demo-attach-an-azure-container-registry)
+    3. [Demo: Build and Push Container Images](#build-and-push-container-images)
+
+2. [Module 2: Deploying Applications](#module-2-deploying-applications)
+
+    1. [Customizing Applications for Deployment](#customizing-applications-for-deployment)
+    2. [Demo: Deploy Applications Manually](#demo-deploy-applications-manually)
+    3. [Demo: Applying Kustomizations](#demo-applying-kustomizations)
+    4. [Demo: Deploying Applications with Helm](#demo-deploying-applications-with-helm)
+    5. [Automated Application Deployment Methods](#automated-application-deployment-methods)
+    6. [Demo: Deploying Applications with Flux](#demo-deploying-applications-with-flux)
+    7. [Demo: Deploying Applications with Argo CD](#demo-deploying-applications-with-argo-cd)
+
+3. [Integrating with Azure Services](#module-3-integrating-with-azure-services)
+
+    1. [Kubernetes Storage Concepts](#kubernetes-storage-concepts)
+    2. [Demo: Use Azure Files with AKS](#demo-use-azure-files-with-aks)
+    3. [AKS Identity Concepts](#aks-identity-concepts)
+    4. [Demo: Configure Workload Identity Federation with AKS](#demo-configure-workload-identity-federation-with-aks)
+    5. [Demo: Use Azure Key Vault with AKS](#demo-use-azure-key-vault-with-aks)
 
 ## Module 1: Preparing for Application Deployment
 
@@ -13,7 +40,9 @@ alias k=kubectl
 
 - No additional resources.
 
-### Attach an Azure Container Registry
+### Demo: Attach an Azure Container Registry
+
+- [Templates used for demonstration](/Templates/1.2/)
 
 #### Resources
 
@@ -69,6 +98,8 @@ alias k=kubectl
     ```
 
 ### Build and Push Container Images
+
+- [Templates used for demonstration](/Templates/1.3/)
 
 #### Resources
 
@@ -138,6 +169,8 @@ alias k=kubectl
 
 ### Demo: Deploy Applications Manually
 
+- [Templates used for demonstration](/Templates/2.2/)
+
 #### Resources
 
 - [Sample Manifests](Manifests)
@@ -193,6 +226,8 @@ alias k=kubectl
 
 ### Demo: Applying Kustomizations
 
+- [Templates used for demonstration](/Templates/2.3/)
+
 #### Resources
 
 - [Sample Kustomizations](Kustomize)
@@ -233,6 +268,8 @@ alias k=kubectl
 
 ### Demo: Deploying Applications with Helm
 
+- [Templates used for demonstration](/Templates/2.4/)
+
 #### Resources
 
 - [Sample Chart](Helm)
@@ -265,6 +302,8 @@ alias k=kubectl
 
 ### Demo: Deploying Applications with Flux
 
+- [Templates used for demonstration](/Templates/2.6/)
+
 #### Resources
 
 - [Microsoft Documentation: Deploy applications using GitOps with Flux v2](https://learn.microsoft.com/azure/azure-arc/kubernetes/tutorial-use-gitops-flux2)
@@ -295,6 +334,8 @@ alias k=kubectl
     ```
 
 ### Demo: Deploying Applications with Argo CD
+
+- [Templates used for demonstration](/Templates/2.7/)
 
 #### Resources
 
@@ -362,6 +403,8 @@ alias k=kubectl
 - [Container Storage Interface (CSI) drivers on Azure Kubernetes Service (AKS)](https://learn.microsoft.com/azure/aks/csi-storage-drivers)
 
 ### Demo: Use Azure Files with AKS
+
+- [Templates used for demonstration](/Templates/3.2/)
 
 #### Resources
 
@@ -453,6 +496,8 @@ template:
 
 ### Demo: Configure Workload Identity Federation with AKS
 
+- [Templates used for demonstration](/Templates/3.4/)
+
 #### Resources
 
 - [Deploy and configure workload identity on an Azure Kubernetes Service (AKS) cluster](https://learn.microsoft.com/azure/aks/workload-identity-deploy-cluster)
@@ -521,6 +566,8 @@ template:
     ```
 
 ### Demo: Use Azure Key Vault with AKS
+
+- [Templates used for demonstration](/Templates/3.5/)
 
 #### Resources
 
