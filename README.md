@@ -16,7 +16,9 @@ alias k=kubectl
 
 #### Resources
 
+ - [Authenticate with Azure Container Registry (ACR) from Azure Kubernetes Service (AKS)](https://learn.microsoft.com/en-us/azure/aks/cluster-container-registry-integration?tabs=azure-cli#working-with-acr--aks)
 - In the Cloud Playground Sandbox, you can use [Image Pull Secret](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-auth-kubernetes) as an alternative to using an attached Container Registry.
+- [Pull an Image from a Private Registry](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/)
 
 #### Code Snippets
 
@@ -128,7 +130,10 @@ alias k=kubectl
 
 ### Customizing Applications for Deployment
 
-- No additional resources.
+#### Resources
+
+- [CI/CD workflow using GitOps (Flux v2)](https://learn.microsoft.com/en-us/azure/azure-arc/kubernetes/conceptual-gitops-flux2-ci-cd)
+- [Tutorial: Deploy applications using GitOps with Flux v2](https://learn.microsoft.com/en-us/azure/azure-arc/kubernetes/tutorial-use-gitops-flux2?toc=%2Fazure%2Faks%2Ftoc.json&bc=%2Fazure%2Faks%2Fbreadcrumb%2Ftoc.json&tabs=azure-cli)
 
 ### Demo: Deploy Applications Manually
 
@@ -231,6 +236,7 @@ alias k=kubectl
 
 - [Sample Chart](Helm)
 - [Install Helm](https://helm.sh/docs/intro/install/)
+- [Install existing applications with Helm](https://learn.microsoft.com/en-us/azure/aks/kubernetes-helm)
 
 #### Code Snippets
 
@@ -356,10 +362,210 @@ alias k=kubectl
 
 ### Kubernetes Storage Concepts
 
+- [Container Storage Interface (CSI) drivers on Azure Kubernetes Service (AKS)](https://learn.microsoft.com/azure/aks/csi-storage-drivers)
+
 ### Demo: Use Azure Files with AKS
+
+#### Resources
+
+- [Statically provision a volume](https://learn.microsoft.com/en-us/azure/aks/azure-csi-files-storage-provision#statically-provision-a-volume)
+- [Create a custom storage class](https://learn.microsoft.com/en-us/azure/aks/azure-disk-csi#create-a-custom-storage-class)
+
+#### Code Snippets
+
+**pvc.yaml**
+
+```yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-azurefiles
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: azurefile-csi
+```
+
+**deployment.yaml**
+
+    ```yaml
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+    labels:
+        app: pwsh-azurefiles
+    name: pwsh-azurefiles
+    spec:
+    replicas: 2
+    selector:
+        matchLabels:
+        app: pwsh-azurefiles
+    template:
+        metadata:
+        labels:
+            app: pwsh-azurefiles
+        spec:
+        containers:
+        - image: mcr.microsoft.com/powershell
+            name: pwsh-azurefiles
+            command:
+            - "pwsh"
+            - "-Command"
+            - "while ($true){ Write-Output \"$($env:HOSTNAME): $(Get-Date)\" | Out-File -FilePath 'mnt/azurefiles/date.txt' -Append; Start-Sleep -Seconds 60 }"
+            volumeMounts:
+            - name: persistent-storage
+                mountPath: "/mnt/azurefiles"
+                readOnly: false
+        volumes:
+            - name: persistent-storage
+            persistentVolumeClaim:
+                claimName: pvc-azurefiles
+    ```
+
+- (Sample) kubectl exec to check the contents of a file:
+
+    ```bash
+    k exec deployment/pwsh-azurefiles -- pwsh -Command Get-Content /mnt/azurefiles/date.txt
+    ```
+
+- (Sample) Add the Azure Files CSI driver to an existing cluster:
+
+    ```bash
+    RG=$(az group list --query [].name --output tsv)
+    AKS=$(az aks list --query [].name --output tsv)
+    az aks update --name $AKS --resource-group $RG --enable-file-driver
+    ```
+
+- List storage classes:
+
+    ```bash
+    alias k=kubectl
+    k get storageclass
+    ```
 
 ### AKS Identity Concepts
 
+#### Resources
+
+- [What are workload identities?](https://learn.microsoft.com/entra/workload-id/workload-identities-overview)
+- [Workload identity federation](https://learn.microsoft.com/entra/workload-id/workload-identity-federation)
+- [Use Microsoft Entra Workload ID with Azure Kubernetes Service (AKS)](https://learn.microsoft.com/en-us/azure/aks/workload-identity-overview)
+
 ### Demo: Configure Workload Identity Federation with AKS
 
+#### Resources
+
+- [Deploy and configure workload identity on an Azure Kubernetes Service (AKS) cluster](https://learn.microsoft.com/azure/aks/workload-identity-deploy-cluster)
+
+#### Code Snippets
+
+- (Sample) Enable Workload Identity and OIDC issuer on an existing AKS cluster:
+
+    ```bash
+    RG=rg-configure-workload-identity-federation
+    AKS=$(az aks list --query [].name --resource-group $RG --output tsv)
+    az aks update \
+    --resource-group $RG \
+    --name $AKS \
+    --enable-oidc-issuer \
+    --enable-workload-identity
+    ```
+
+- (Sample) Retrieve OIDC issuer URL for an AKS cluster:
+
+    ```bash
+    AKS_OIDC_ISSUER=$(az aks show --name $AKS --resource-group $RG --query "oidcIssuerProfile.issuerUrl" --output tsv)
+    ```
+
+- (Sample) Create a managed identity:
+
+    ```bash
+    MANAGED_IDENTITY=umi-akswebapp
+    LOCATION=eastus
+    SUBSCRIPTION=$(az account show --query id --output tsv)
+    az identity create \
+    --name $MANAGED_IDENTITY \
+    --resource-group $RG \
+    --location $LOCATION \
+    --subscription $SUBSCRIPTION
+    ```
+
+- (Sample) Create and annotate a Kubernetes Service Account so it can be projected into a pod and used to retrive a Microsoft Entra token:
+
+    ```bash
+    k create serviceaccount sa-akswebapp
+    k annotate serviceaccount sa-akswebapp azure.workload.identity/client-id=$MANAGED_IDENTITY_CLIENT_ID
+    ```
+
+- (Sample) Create a federated credential:
+
+    ```bash
+    az identity federated-credential create \
+    --name fed-identity-akswebapp \
+    --resource-group $RG \
+    --identity-name $MANAGED_IDENTITY \
+    --issuer $AKS_OIDC_ISSUER \
+    --subject system:serviceaccount:default:sa-akswebapp \
+    --audience api://AzureADTokenExchange
+    ```
+
+- (Sample) Create an Azure RBAC role assignment for a Workload Identity:
+
+    ```bash
+    STORAGE_ID=$(az storage account list --resource-group $RG --query [].id --output tsv)
+    MANAGED_IDENTITY_PRINCIPAL_ID=$(az identity show --resource-group $RG --name $MANAGED_IDENTITY --query principalId --output tsv)
+    az role assignment create \
+    --assignee-object-id $MANAGED_IDENTITY_PRINCIPAL_ID \
+    --role 'Storage Blob Data Reader' \
+    --scope $STORAGE_ID
+    ```
+
 ### Demo: Use Azure Key Vault with AKS
+
+#### Resources
+
+- [Deploy and configure workload identity on an Azure Kubernetes Service (AKS) cluster](https://learn.microsoft.com/azure/aks/workload-identity-deploy-cluster)
+- [Use the Azure Key Vault provider for Secrets Store CSI Driver in an Azure Kubernetes Service (AKS) cluster](https://learn.microsoft.com/azure/aks/csi-secrets-store-driver)
+
+#### Code Snippets
+
+- (Sample) Enable Key Vault Secrets Store CSI driver on an existing AKS cluster:
+
+    ```bash
+    az aks enable-addons \
+    --name $AKS \
+    --resource-group $RG \
+    --addons azure-keyvault-secrets-provider  
+    ```
+
+    **secretscore.yaml**
+    ```yaml
+    apiVersion: secrets-store.csi.x-k8s.io/v1
+    kind: SecretProviderClass
+    metadata:
+    name: # Update with Key Vault name
+    spec:
+    provider: azure
+    parameters:
+        usePodIdentity: "false"
+        clientID: # Update
+        keyvaultName: # Update
+        objects:  |
+        array:
+            - |
+            objectName: #Update             
+            objectType: secret              
+        tenantId: # Update
+    ```
+
+- (Sample) Retrieve the required values to populate `secretstore.yaml`:
+
+    ```bash
+    echo clientID: $(az identity show --resource-group $RG --name $MANAGED_IDENTITY --query 'clientId' -o tsv)
+    echo keyvaultName: $(az keyvault list --resource-group $RG --query [].name --output tsv)
+    echo objectName: $(az keyvault secret list --vault-name $KV --query [].name --output tsv)
+    echo tenantId: $(az keyvault show --name $KV --resource-group $RG --query properties.tenantId -o tsv)
+    ```

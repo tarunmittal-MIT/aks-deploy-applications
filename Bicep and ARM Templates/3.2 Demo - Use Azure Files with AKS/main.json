@@ -1,0 +1,48 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.30.23.60470",
+      "templateHash": "2045283001484827159"
+    }
+  },
+  "variables": {
+    "location": "[resourceGroup().location]",
+    "osDiskSizeGB": 128,
+    "agentCount": 1,
+    "agentVMSize": "Standard_D2s_v3",
+    "osTypeLinux": "Linux",
+    "uniqueSuffix": "[uniqueString(resourceGroup().id)]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.ContainerService/managedClusters",
+      "apiVersion": "2024-06-02-preview",
+      "name": "[format('aks-{0}', variables('uniqueSuffix'))]",
+      "location": "[variables('location')]",
+      "tags": {
+        "displayname": "AKS Cluster"
+      },
+      "identity": {
+        "type": "SystemAssigned"
+      },
+      "properties": {
+        "enableRBAC": true,
+        "dnsPrefix": "[format('aks-{0}', variables('uniqueSuffix'))]",
+        "agentPoolProfiles": [
+          {
+            "name": "syspool",
+            "osDiskSizeGB": "[variables('osDiskSizeGB')]",
+            "count": "[variables('agentCount')]",
+            "vmSize": "[variables('agentVMSize')]",
+            "osType": "[variables('osTypeLinux')]",
+            "type": "VirtualMachineScaleSets",
+            "mode": "System"
+          }
+        ]
+      }
+    }
+  ]
+}
