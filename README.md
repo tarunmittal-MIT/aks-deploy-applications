@@ -5,6 +5,7 @@
 ```bash
 alias k=kubectl
 ```
+> **Note**: This samples provided in this repository need to be modified/updated to use your values.
 
 ## Module 1: Preparing for Application Deployment
 
@@ -293,8 +294,6 @@ alias k=kubectl
     --kustomization name=staging path=./Kustomize/akswebapp/overlays/staging prune=true
     ```
 
-     > **Note**: This sample needs to be modified to used.
-
 ### Demo: Deploying Applications with Argo CD
 
 #### Resources
@@ -350,8 +349,6 @@ alias k=kubectl
     argocd app set akswebapp-prod --sync-policy automated
     ```
 
-    > **Note**: This sample needs to be modified to use your GitHub repository and the manifests must be updated to use your container registry and image.
-
 - (Sample) Enable auto-sync:
 
     ```bash
@@ -391,39 +388,39 @@ spec:
 
 **deployment.yaml**
 
-    ```yaml
-    apiVersion: apps/v1
-    kind: Deployment
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+labels:
+    app: pwsh-azurefiles
+name: pwsh-azurefiles
+spec:
+replicas: 2
+selector:
+    matchLabels:
+    app: pwsh-azurefiles
+template:
     metadata:
     labels:
         app: pwsh-azurefiles
-    name: pwsh-azurefiles
     spec:
-    replicas: 2
-    selector:
-        matchLabels:
-        app: pwsh-azurefiles
-    template:
-        metadata:
-        labels:
-            app: pwsh-azurefiles
-        spec:
-        containers:
-        - image: mcr.microsoft.com/powershell
-            name: pwsh-azurefiles
-            command:
-            - "pwsh"
-            - "-Command"
-            - "while ($true){ Write-Output \"$($env:HOSTNAME): $(Get-Date)\" | Out-File -FilePath 'mnt/azurefiles/date.txt' -Append; Start-Sleep -Seconds 60 }"
-            volumeMounts:
-            - name: persistent-storage
-                mountPath: "/mnt/azurefiles"
-                readOnly: false
-        volumes:
-            - name: persistent-storage
-            persistentVolumeClaim:
-                claimName: pvc-azurefiles
-    ```
+    containers:
+    - image: mcr.microsoft.com/powershell
+        name: pwsh-azurefiles
+        command:
+        - "pwsh"
+        - "-Command"
+        - "while ($true){ Write-Output \"$($env:HOSTNAME): $(Get-Date)\" | Out-File -FilePath 'mnt/azurefiles/date.txt' -Append; Start-Sleep -Seconds 60 }"
+        volumeMounts:
+        - name: persistent-storage
+            mountPath: "/mnt/azurefiles"
+            readOnly: false
+    volumes:
+        - name: persistent-storage
+        persistentVolumeClaim:
+            claimName: pvc-azurefiles
+```
 
 - (Sample) kubectl exec to check the contents of a file:
 
