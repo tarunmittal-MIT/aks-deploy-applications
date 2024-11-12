@@ -26,7 +26,7 @@ alias k=kubectl
     6. [Demo: Deploying Applications with Flux](#demo-deploying-applications-with-flux)
     7. [Demo: Deploying Applications with Argo CD](#demo-deploying-applications-with-argo-cd)
 
-3. [Integrating with Azure Services](#module-3-integrating-with-azure-services)
+3. [Module 3: Integrating with Azure Services](#module-3-integrating-with-azure-services)
 
     1. [Kubernetes Storage Concepts](#kubernetes-storage-concepts)
     2. [Demo: Use Azure Files with AKS](#demo-use-azure-files-with-aks)
