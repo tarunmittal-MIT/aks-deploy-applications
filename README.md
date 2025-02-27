@@ -62,7 +62,7 @@ alias k=kubectl
 
 1. Click the **Deploy to Azure** button. Make sure the link opens in the same browser tab as the Azure Portal.
 
-    [![Deploy To Azure](https://aka.ms/deploytoazurebutton)]()
+    [![Deploy To Azure](https://aka.ms/deploytoazurebutton)](https://raw.githubusercontent.com/pluralsight-cloud/aks-deploy-applications/refs/heads/main/Templates/1.2/main.json)
 
 1. Select your preferred **Subscription** and **Resource Group**.
 1. Deploy the template.
@@ -123,7 +123,31 @@ alias k=kubectl
 
 ### Build and Push Container Images
 
-- [Templates used for demonstration](/Templates/1.3/)
+1. To follow along with this demonstration you will need your own subscription.
+1. Log in to the Azure Portal.
+1. Open **Cloud Shell** using **Bash** and set the subscription you'd like to use:
+
+    ```bash
+    az account set --subscription "<Subscription ID>"
+    ```
+
+    >**Note**: Replace the value of `<Subscription ID>` with the ID of the subscription you'd like to use.
+
+1. Create a resource group for the demonstration.
+
+    > **Note**: You can change the name of the resource group and location as required. But you must use a region where App Gateway for Containers is available.
+
+    ```bash
+    RG=$(az group create --location australiaeast --resource-group rg-build-and-push-container-images --query name --output tsv)
+    ```
+
+1. Click the **Deploy to Azure** button. Make sure the link opens in the same browser tab as the Azure Portal.
+
+    [![Deploy To Azure](https://aka.ms/deploytoazurebutton)](https://raw.githubusercontent.com/pluralsight-cloud/aks-deploy-applications/refs/heads/main/Templates/1.3/main.json)
+
+1. Select your preferred **Subscription** and **Resource Group**.
+1. Deploy the template.
+1. Follow-along with the demo.
 
 #### Resources
 
@@ -193,7 +217,31 @@ alias k=kubectl
 
 ### Demo: Deploy Applications Manually
 
-- [Templates used for demonstration](/Templates/2.2/)
+1. To follow along with this demonstration you will need your own subscription.
+1. Log in to the Azure Portal.
+1. Open **Cloud Shell** using **Bash** and set the subscription you'd like to use:
+
+    ```bash
+    az account set --subscription "<Subscription ID>"
+    ```
+
+    >**Note**: Replace the value of `<Subscription ID>` with the ID of the subscription you'd like to use.
+
+1. Create a resource group for the demonstration.
+
+    > **Note**: You can change the name of the resource group and location as required. But you must use a region where App Gateway for Containers is available.
+
+    ```bash
+    RG=$(az group create --location australiaeast --resource-group rg-deploy-applications-manually --query name --output tsv)
+    ```
+
+1. Click the **Deploy to Azure** button. Make sure the link opens in the same browser tab as the Azure Portal.
+
+    [![Deploy To Azure](https://aka.ms/deploytoazurebutton)](https://raw.githubusercontent.com/pluralsight-cloud/aks-deploy-applications/refs/heads/main/Templates/2.2/main.json)
+
+1. Select your preferred **Subscription** and **Resource Group**.
+1. Deploy the template.
+1. Follow-along with the demo.
 
 #### Resources
 
@@ -250,7 +298,31 @@ alias k=kubectl
 
 ### Demo: Applying Kustomizations
 
-- [Templates used for demonstration](/Templates/2.3/)
+1. To follow along with this demonstration you will need your own subscription.
+1. Log in to the Azure Portal.
+1. Open **Cloud Shell** using **Bash** and set the subscription you'd like to use:
+
+    ```bash
+    az account set --subscription "<Subscription ID>"
+    ```
+
+    >**Note**: Replace the value of `<Subscription ID>` with the ID of the subscription you'd like to use.
+
+1. Create a resource group for the demonstration.
+
+    > **Note**: You can change the name of the resource group and location as required. But you must use a region where App Gateway for Containers is available.
+
+    ```bash
+    RG=$(az group create --location australiaeast --resource-group rg-applying-kustomizations --query name --output tsv)
+    ```
+
+1. Click the **Deploy to Azure** button. Make sure the link opens in the same browser tab as the Azure Portal.
+
+    [![Deploy To Azure](https://aka.ms/deploytoazurebutton)](https://raw.githubusercontent.com/pluralsight-cloud/aks-deploy-applications/refs/heads/main/Templates/2.3/main.json)
+
+1. Select your preferred **Subscription** and **Resource Group**.
+1. Deploy the template.
+1. Follow-along with the demo.
 
 #### Resources
 
@@ -292,7 +364,31 @@ alias k=kubectl
 
 ### Demo: Deploying Applications with Helm
 
-- [Templates used for demonstration](/Templates/2.4/)
+1. To follow along with this demonstration you will need your own subscription.
+1. Log in to the Azure Portal.
+1. Open **Cloud Shell** using **Bash** and set the subscription you'd like to use:
+
+    ```bash
+    az account set --subscription "<Subscription ID>"
+    ```
+
+    >**Note**: Replace the value of `<Subscription ID>` with the ID of the subscription you'd like to use.
+
+1. Create a resource group for the demonstration.
+
+    > **Note**: You can change the name of the resource group and location as required. But you must use a region where App Gateway for Containers is available.
+
+    ```bash
+    RG=$(az group create --location australiaeast --resource-group rg-deploying-with-helm --query name --output tsv)
+    ```
+
+1. Click the **Deploy to Azure** button. Make sure the link opens in the same browser tab as the Azure Portal.
+
+    [![Deploy To Azure](https://aka.ms/deploytoazurebutton)](https://raw.githubusercontent.com/pluralsight-cloud/aks-deploy-applications/refs/heads/main/Templates/2.4/main.json)
+
+1. Select your preferred **Subscription** and **Resource Group**.
+1. Deploy the template.
+1. Follow-along with the demo.
 
 #### Resources
 
@@ -326,7 +422,31 @@ alias k=kubectl
 
 ### Demo: Deploying Applications with Flux
 
-- [Templates used for demonstration](/Templates/2.6/)
+1. To follow along with this demonstration you will need your own subscription.
+1. Log in to the Azure Portal.
+1. Open **Cloud Shell** using **Bash** and set the subscription you'd like to use:
+
+    ```bash
+    az account set --subscription "<Subscription ID>"
+    ```
+
+    >**Note**: Replace the value of `<Subscription ID>` with the ID of the subscription you'd like to use.
+
+1. Create a resource group for the demonstration.
+
+    > **Note**: You can change the name of the resource group and location as required. But you must use a region where App Gateway for Containers is available.
+
+    ```bash
+    RG=$(az group create --location australiaeast --resource-group rg-deploy-applications-with-flux --query name --output tsv)
+    ```
+
+1. Click the **Deploy to Azure** button. Make sure the link opens in the same browser tab as the Azure Portal.
+
+    [![Deploy To Azure](https://aka.ms/deploytoazurebutton)](https://raw.githubusercontent.com/pluralsight-cloud/aks-deploy-applications/refs/heads/main/Templates/2.6/main.json)
+
+1. Select your preferred **Subscription** and **Resource Group**.
+1. Deploy the template.
+1. Follow-along with the demo.
 
 #### Resources
 
@@ -359,7 +479,31 @@ alias k=kubectl
 
 ### Demo: Deploying Applications with Argo CD
 
-- [Templates used for demonstration](/Templates/2.7/)
+1. To follow along with this demonstration you will need your own subscription.
+1. Log in to the Azure Portal.
+1. Open **Cloud Shell** using **Bash** and set the subscription you'd like to use:
+
+    ```bash
+    az account set --subscription "<Subscription ID>"
+    ```
+
+    >**Note**: Replace the value of `<Subscription ID>` with the ID of the subscription you'd like to use.
+
+1. Create a resource group for the demonstration.
+
+    > **Note**: You can change the name of the resource group and location as required. But you must use a region where App Gateway for Containers is available.
+
+    ```bash
+    RG=$(az group create --location australiaeast --resource-group rg-deploying-applications-with-argo-cd --query name --output tsv)
+    ```
+
+1. Click the **Deploy to Azure** button. Make sure the link opens in the same browser tab as the Azure Portal.
+
+    [![Deploy To Azure](https://aka.ms/deploytoazurebutton)](https://raw.githubusercontent.com/pluralsight-cloud/aks-deploy-applications/refs/heads/main/Templates/2.7/main.json)
+
+1. Select your preferred **Subscription** and **Resource Group**.
+1. Deploy the template.
+1. Follow-along with the demo.
 
 #### Resources
 
@@ -428,7 +572,18 @@ alias k=kubectl
 
 ### Demo: Use Azure Files with AKS
 
-- [Templates used for demonstration](/Templates/3.2/)
+To follow along in this demo using the Cloud Playground Sandbox, follow these steps:
+
+1. Start an [Azure Sandbox](https://app.pluralsight.com/hands-on/playground/cloud-sandboxes).
+1. In an InPrivate or Incognito window log in to the Azure Sandbox using the provided credentials.
+1. Click the **Deploy to Azure** button. Make sure the link opens in the Sandbox browser tab.
+
+    [![Deploy To Azure](https://aka.ms/deploytoazurebutton)](https://raw.githubusercontent.com/pluralsight-cloud/aks-deploy-applications/refs/heads/main/Templates/3.2/main.json)
+
+1. Select the existing **Subscription** and **Resource Group**.
+1. Provide the `Application Client ID` and `Secret` from the Sandbox details.
+1. Deploy the template.
+1. Follow-along with the demo.
 
 #### Resources
 
@@ -520,7 +675,31 @@ template:
 
 ### Demo: Configure Workload Identity Federation with AKS
 
-- [Templates used for demonstration](/Templates/3.4/)
+1. To follow along with this demonstration you will need your own subscription.
+1. Log in to the Azure Portal.
+1. Open **Cloud Shell** using **Bash** and set the subscription you'd like to use:
+
+    ```bash
+    az account set --subscription "<Subscription ID>"
+    ```
+
+    >**Note**: Replace the value of `<Subscription ID>` with the ID of the subscription you'd like to use.
+
+1. Create a resource group for the demonstration.
+
+    > **Note**: You can change the name of the resource group and location as required. But you must use a region where App Gateway for Containers is available.
+
+    ```bash
+    RG=$(az group create --location australiaeast --resource-group rg-configure-workload-identity-federation --query name --output tsv)
+    ```
+
+1. Click the **Deploy to Azure** button. Make sure the link opens in the same browser tab as the Azure Portal.
+
+    [![Deploy To Azure](https://aka.ms/deploytoazurebutton)](https://raw.githubusercontent.com/pluralsight-cloud/aks-deploy-applications/refs/heads/main/Templates/3.4/main.json)
+
+1. Select your preferred **Subscription** and **Resource Group**.
+1. Deploy the template.
+1. Follow-along with the demo.
 
 #### Resources
 
@@ -591,7 +770,31 @@ template:
 
 ### Demo: Use Azure Key Vault with AKS
 
-- [Templates used for demonstration](/Templates/3.5/)
+1. To follow along with this demonstration you will need your own subscription.
+1. Log in to the Azure Portal.
+1. Open **Cloud Shell** using **Bash** and set the subscription you'd like to use:
+
+    ```bash
+    az account set --subscription "<Subscription ID>"
+    ```
+
+    >**Note**: Replace the value of `<Subscription ID>` with the ID of the subscription you'd like to use.
+
+1. Create a resource group for the demonstration.
+
+    > **Note**: You can change the name of the resource group and location as required. But you must use a region where App Gateway for Containers is available.
+
+    ```bash
+    RG=$(az group create --location australiaeast --resource-group rg-use-azure-key-vault-with-aks --query name --output tsv)
+    ```
+
+1. Click the **Deploy to Azure** button. Make sure the link opens in the same browser tab as the Azure Portal.
+
+    [![Deploy To Azure](https://aka.ms/deploytoazurebutton)](https://raw.githubusercontent.com/pluralsight-cloud/aks-deploy-applications/refs/heads/main/Templates/3.5/main.json)
+
+1. Select your preferred **Subscription** and **Resource Group**.
+1. Deploy the template.
+1. Follow-along with the demo.
 
 #### Resources
 
