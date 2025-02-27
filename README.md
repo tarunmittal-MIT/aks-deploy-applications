@@ -6,9 +6,9 @@
 alias k=kubectl
 ```
 
-> **Note**: This samples provided in this repository need to be modified/updated to use your values.
+> **Note**: The samples provided in this repository need to be modified/updated to use your values.
 
-## Quick Links to Modules and Clips
+## Table of Contents
 
 1. [Module 1: Preparing for Application Deployment](#module-1-preparing-for-application-deployment)
 
@@ -42,11 +42,35 @@ alias k=kubectl
 
 ### Demo: Attach an Azure Container Registry
 
-- [Templates used for demonstration](/Templates/1.2/)
+1. To follow along with this demonstration you will need your own subscription.
+1. Log in to the Azure Portal.
+1. Open **Cloud Shell** using **Bash** and set the subscription you'd like to use:
+
+    ```bash
+    az account set --subscription "<Subscription ID>"
+    ```
+
+    >**Note**: Replace the value of `<Subscription ID>` with the ID of the subscription you'd like to use.
+
+1. Create a resource group for the demonstration.
+
+    > **Note**: You can change the name of the resource group and location as required. But you must use a region where App Gateway for Containers is available.
+
+    ```bash
+    RG=$(az group create --location australiaeast --resource-group rg-create-an-azure-container-registry --query name --output tsv)
+    ```
+
+1. Click the **Deploy to Azure** button. Make sure the link opens in the same browser tab as the Azure Portal.
+
+    [![Deploy To Azure](https://aka.ms/deploytoazurebutton)]()
+
+1. Select your preferred **Subscription** and **Resource Group**.
+1. Deploy the template.
+1. Follow-along with the demo.
 
 #### Resources
 
- - [Authenticate with Azure Container Registry (ACR) from Azure Kubernetes Service (AKS)](https://learn.microsoft.com/en-us/azure/aks/cluster-container-registry-integration?tabs=azure-cli#working-with-acr--aks)
+- [Authenticate with Azure Container Registry (ACR) from Azure Kubernetes Service (AKS)](https://learn.microsoft.com/en-us/azure/aks/cluster-container-registry-integration?tabs=azure-cli#working-with-acr--aks)
 - In the Cloud Playground Sandbox, you can use [Image Pull Secret](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-auth-kubernetes) as an alternative to using an attached Container Registry.
 - [Pull an Image from a Private Registry](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/)
 
