@@ -26,8 +26,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/wayne-hoggett/Documents/GitHub/aks-deploy-applications/AKSWebApp/Pages/Secrets.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2VjcmV0cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/wayne-hoggett/Documents/GitHub/aks-deploy-applications/AKSWebApp/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/wayne-hoggett/Documents/GitHub/aks-deploy-applications/AKSWebApp/Pages/Storage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU3RvcmFnZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/wayne-hoggett/Documents/GitHub/aks-deploy-applications/AKSWebApp/Pages/_ViewImports.cshtml]

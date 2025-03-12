@@ -1,8 +1,29 @@
 {
   "version": 2,
-  "dgSpecHash": "Vts8A1Ah/Ss=",
+  "dgSpecHash": "iHvShf6cTfA=",
   "success": true,
   "projectFilePath": "/Users/wayne-hoggett/Documents/GitHub/aks-deploy-applications/AKSWebApp/AKSWebApp.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/Users/wayne-hoggett/.nuget/packages/azure.core/1.44.1/azure.core.1.44.1.nupkg.sha512",
+    "/Users/wayne-hoggett/.nuget/packages/azure.identity/1.13.1/azure.identity.1.13.1.nupkg.sha512",
+    "/Users/wayne-hoggett/.nuget/packages/azure.security.keyvault.secrets/4.7.0/azure.security.keyvault.secrets.4.7.0.nupkg.sha512",
+    "/Users/wayne-hoggett/.nuget/packages/azure.storage.blobs/12.22.2/azure.storage.blobs.12.22.2.nupkg.sha512",
+    "/Users/wayne-hoggett/.nuget/packages/azure.storage.common/12.21.1/azure.storage.common.12.21.1.nupkg.sha512",
+    "/Users/wayne-hoggett/.nuget/packages/microsoft.bcl.asyncinterfaces/6.0.0/microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",
+    "/Users/wayne-hoggett/.nuget/packages/microsoft.identity.client/4.66.1/microsoft.identity.client.4.66.1.nupkg.sha512",
+    "/Users/wayne-hoggett/.nuget/packages/microsoft.identity.client.extensions.msal/4.66.1/microsoft.identity.client.extensions.msal.4.66.1.nupkg.sha512",
+    "/Users/wayne-hoggett/.nuget/packages/microsoft.identitymodel.abstractions/6.35.0/microsoft.identitymodel.abstractions.6.35.0.nupkg.sha512",
+    "/Users/wayne-hoggett/.nuget/packages/system.clientmodel/1.1.0/system.clientmodel.1.1.0.nupkg.sha512",
+    "/Users/wayne-hoggett/.nuget/packages/system.diagnostics.diagnosticsource/6.0.1/system.diagnostics.diagnosticsource.6.0.1.nupkg.sha512",
+    "/Users/wayne-hoggett/.nuget/packages/system.io.hashing/6.0.0/system.io.hashing.6.0.0.nupkg.sha512",
+    "/Users/wayne-hoggett/.nuget/packages/system.memory/4.5.5/system.memory.4.5.5.nupkg.sha512",
+    "/Users/wayne-hoggett/.nuget/packages/system.memory.data/6.0.0/system.memory.data.6.0.0.nupkg.sha512",
+    "/Users/wayne-hoggett/.nuget/packages/system.numerics.vectors/4.5.0/system.numerics.vectors.4.5.0.nupkg.sha512",
+    "/Users/wayne-hoggett/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "/Users/wayne-hoggett/.nuget/packages/system.security.cryptography.protecteddata/4.5.0/system.security.cryptography.protecteddata.4.5.0.nupkg.sha512",
+    "/Users/wayne-hoggett/.nuget/packages/system.text.encodings.web/6.0.0/system.text.encodings.web.6.0.0.nupkg.sha512",
+    "/Users/wayne-hoggett/.nuget/packages/system.text.json/6.0.10/system.text.json.6.0.10.nupkg.sha512",
+    "/Users/wayne-hoggett/.nuget/packages/system.threading.tasks.extensions/4.5.4/system.threading.tasks.extensions.4.5.4.nupkg.sha512"
+  ],
   "logs": []
 }

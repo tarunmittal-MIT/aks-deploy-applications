@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Azure.Identity;
+using Azure.Security.KeyVault.Secrets;
 
 namespace AKSWebApp.Pages;
 
@@ -16,6 +18,8 @@ public class IndexModel : PageModel
     }
 
     public string? PageTitleSuffix { get; private set; }
+    public string? Secret { get; private set; }
+    public string? KeyVaultUrl { get; private set; }
 
     public void OnGet()
     {

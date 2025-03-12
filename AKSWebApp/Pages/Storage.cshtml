@@ -1,0 +1,47 @@
+﻿@page
+@model StorageModel
+@{
+    ViewData["Title"] = "AKS Web Application - " + @Model.PageTitleSuffix;
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h2 class="display-6 mb-3 text-center">Retrieve Blobs from Azure Storage</h2>
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    <form method="post" asp-page-handler="GetBlobs" class="mb-4">
+                        <div class="form-group mb-3">
+                            <label for="storageAccountName">Storage Account Name:</label>
+                            <input type="text" name="storageAccountName" id="storageAccountName" placeholder="storage-account-name" required class="form-control">
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="blobContainer">Blob Container Name:</label>
+                            <input type="text" name="blobContainer" id="blobContainer" placeholder="blob-container-name" required class="form-control">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-lg px-5 py-2 mt-3 mb-4">Get Blobs</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@{
+    if (Model.Blobs != null)
+    {
+        if (Model.Blobs.Count > 0) {
+        <div class="mt-4">
+            <h2>Blobs Retrieved:</h2>
+            <ul>
+                @foreach (var blob in Model.Blobs)
+                {
+                    <li>@blob</li>
+                }
+            </ul>
+        </div>
+        }
+    }
+}
