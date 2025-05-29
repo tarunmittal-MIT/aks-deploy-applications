@@ -16,7 +16,7 @@ spec:
         app: {{ .Release.Name }}
     spec:
       containers:
-      - image: crrzqxudloemoo4.azurecr.io/akswebapp:v1
+      - image: tarunacr1.azurecr.io/akswebapp:v1
         name: {{ .Release.Name }}
         env:
         - name: ASPNETCORE_ENVIRONMENT
