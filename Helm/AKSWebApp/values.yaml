@@ -1,2 +1,3 @@
 Replicas: 1
 Environment: Development
+host: akswebapp.dem04learning.com
