@@ -24,7 +24,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: {{ .Values.host }}
+  - host: {{ .Release.Name }}.demo4learning.com
     http:
       paths: 
       - path: /
