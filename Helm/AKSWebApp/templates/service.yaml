@@ -26,10 +26,11 @@ spec:
   rules:
   - host: {{ .Values.host }}
     http:
-      paths: /
-      patchType: Prefix
-      backend:
-        service:
-          name: {{ .Release.Name }}
-          port:
-            number: 80
+      paths: 
+      - paths: /
+        pathType: Prefix
+        backend:
+          service:
+            name: {{ .Release.Name }}
+            port:
+              number: 80
