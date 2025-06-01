@@ -15,6 +15,7 @@ spec:
       labels:
         app: {{ .Release.Name }}
     spec:
+      serviceAccountName: sa-akswebapp
       containers:
       - image: tarunacr1.azurecr.io/akswebapp:v1
         name: {{ .Release.Name }}
