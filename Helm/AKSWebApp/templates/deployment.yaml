@@ -15,7 +15,7 @@ spec:
       labels:
         app: {{ .Release.Name }}
       annotations:
-        azure.workload.identity/inject-proxy-sidecar: "true"
+        azure.workload.identity/client-id: 55aae683-6d0d-4da9-8dd2-82d62cb3f04e
     spec:
       serviceAccountName: sa-akswebapp-{{ .Release.Namespace }}
       containers:
